@@ -12,7 +12,17 @@ public class Evaluator {
     operatorStack = new Stack<>();
   }
 
+  public void evalParentheticalGroup() {
+    Operator opr;
+    while( ( opr = operatorStack.peek() ).getClass() != OpenParenthesisOperator.class ) {
+      Operand top = operandStack.pop();
+      operandStack.push( opr.execute( operandStack.pop(), top ));
+    }
+    System.out.println( "Group evaluated to: " + Integer.toString( operandStack.peek().getValue() ) );
+  }
+
   public int eval( String expression ) {
+    System.out.println( "Evaluating: " + expression );
     String token;
 
     // The 3rd argument is true to indicate that the delimiters should be used
@@ -25,11 +35,12 @@ public class Evaluator {
     // of the usual operators
 
     // TODO Operator is abstract - this will need to be fixed:
-    // operatorStack.push( new Operator( "#" ));
+    operatorStack.push( new InitOperator() );
 
     while ( this.tokenizer.hasMoreTokens() ) {
       // filter out spaces
       if ( !( token = this.tokenizer.nextToken() ).equals( " " )) {
+        //System.out.println( "Processing: " + token );
         // check if token is an operand
         if ( Operand.check( token )) {
           operandStack.push( new Operand( token ));
@@ -43,9 +54,10 @@ public class Evaluator {
           // ( The Operator class should contain an instance of a HashMap,
           // and values will be instances of the Operators.  See Operator class
           // skeleton for an example. )
-          Operator newOperator = new Operator( token );
+          Operator newOperator = Operator.getByToken(token);
 
-          while ( operatorStack.peek().priority() >= newOperator.priority() ) {
+          while ( operatorStack.peek().getClass() != OpenParenthesisOperator.class &&
+                  operatorStack.peek().priority() >= newOperator.priority() ) {
             // note that when we eval the expression 1 - 2 we will
             // push the 1 then the 2 and then do the subtraction operation
             // This means that the first number to be popped is the
@@ -53,10 +65,14 @@ public class Evaluator {
             Operator oldOpr = operatorStack.pop();
             Operand op2 = operandStack.pop();
             Operand op1 = operandStack.pop();
-            operandStack.push( oldOpr.execute( op1, op2 ));
+            operandStack.push( oldOpr.execute( op1, op2 ) );
+          }
+          if( ! newOperator.getClass().equals( CloseParenthesisOperator.class ) ) {
+            operatorStack.push(newOperator);
+          } else {
+            operatorStack.pop();
           }
 
-          operatorStack.push( newOperator );
         }
       }
     }
@@ -73,6 +89,14 @@ public class Evaluator {
     // then executes the while loop; also, move the stacks out of the main
     // method
 
-    return 0;
+    Operator opr;
+    Operand op;
+    while( ( opr = operatorStack.pop() ).getClass() != InitOperator.class ) {
+      Operand top = operandStack.pop();
+      operandStack.push( opr.execute( operandStack.pop(), top ));
+    }
+    int result = operandStack.pop().getValue();
+    return result;
+
   }
 }
