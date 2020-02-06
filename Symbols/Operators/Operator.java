@@ -26,14 +26,14 @@ public abstract class Operator {
     Operators.put( ")", new CloseParenthesisOperator() );
   }
 
-  public abstract int priority();
-  public abstract Operand execute(Operand op1, Operand op2 );
-
   public static Operator getByToken( String token ) {
     return Operators.get( token );
   }
-
   public static boolean check( String token ) {
-    return operatorTokens.contains( token );
+    return operatorTokens.contains(token);
   }
+
+  public abstract int priority();
+  public abstract Operand execute(Operand op1, Operand op2 );
+
 }

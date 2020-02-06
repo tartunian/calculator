@@ -35,12 +35,12 @@ public class EvaluatorUI extends JFrame implements ActionListener {
 
     //create 20 buttons with corresponding text in bText[] array
     for ( int i = 0; i < 20; i++ ) {
-      buttons[ i ] = new Button( bText[ i ]);
+      buttons[ i ] = new Button( bText[ i ] );
     }
 
     //add buttons to button panel
     for (int i=0; i<20; i++) {
-      buttonPanel.add( buttons[ i ]);
+      buttonPanel.add( buttons[ i ] );
     }
 
     //set up buttons to listen for mouse input
