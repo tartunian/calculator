@@ -30,6 +30,7 @@ public class EvaluatorUI extends JFrame implements ActionListener {
     txField.setEditable( false );
 
     add( buttonPanel, BorderLayout.CENTER );
+
     buttonPanel.setLayout( new GridLayout( 5, 4 ) );
 
     //create 20 buttons with corresponding text in bText[] array
