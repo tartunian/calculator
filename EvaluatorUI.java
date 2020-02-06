@@ -18,7 +18,7 @@ public class EvaluatorUI extends JFrame implements ActionListener {
 
   private Evaluator evaluator = new Evaluator();
 
-  public static void main(String argv[]) {
+  public static void main( String argv[] ) {
     EvaluatorUI calc = new EvaluatorUI();
   }
 
@@ -27,10 +27,10 @@ public class EvaluatorUI extends JFrame implements ActionListener {
     setLayout( new BorderLayout() );
 
     add( txField, BorderLayout.NORTH );
-    txField.setEditable( true );
+    txField.setEditable( false );
 
     add( buttonPanel, BorderLayout.CENTER );
-    buttonPanel.setLayout( new GridLayout( 5, 4 ));
+    buttonPanel.setLayout( new GridLayout( 5, 4 ) );
 
     //create 20 buttons with corresponding text in bText[] array
     for ( int i = 0; i < 20; i++ ) {
@@ -55,14 +55,17 @@ public class EvaluatorUI extends JFrame implements ActionListener {
   }
 
   public void actionPerformed( ActionEvent arg0 ) {
+
+    // Get the button text/token.
     String cmd = arg0.getActionCommand();
+
     switch ( cmd ) {
       case "C": {
         txField.setText("");
         break;
       }
       case "CE": {
-        txField.setText( txField.getText().substring( 0, txField.getText().length()-1 ));
+        txField.setText( txField.getText().substring( 0, txField.getText().length() - 1 ) );
         break;
       }
       case "=": {
@@ -71,7 +74,9 @@ public class EvaluatorUI extends JFrame implements ActionListener {
       }
       default: {
         txField.setText( txField.getText() + cmd );
+        break;
       }
     }
   }
+
 }

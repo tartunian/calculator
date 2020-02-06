@@ -1,11 +1,15 @@
+package Symbols.Operators;
+
+import Symbols.Operand;
+
 import java.util.HashMap;
 
 public abstract class Operator {
 
   private static String operatorTokens = "+-*/^()";
-  // The Operator class should contain an instance of a HashMap
+  // The Symbols.Operators.Operator class should contain an instance of a HashMap
   // This map will use keys as the tokens we're interested in,
-  // and values will be instances of the Operators.
+  // and values will be instances of the Symbols.Operators.
 
   // Example:
   // Where does this declaration go? What should its access level be?
@@ -23,7 +27,7 @@ public abstract class Operator {
   }
 
   public abstract int priority();
-  public abstract Operand execute( Operand op1, Operand op2 );
+  public abstract Operand execute(Operand op1, Operand op2 );
 
   public static Operator getByToken( String token ) {
     return Operators.get( token );

@@ -1,3 +1,7 @@
+package Symbols.Operators;
+
+import Symbols.Operand;
+
 public class CloseParenthesisOperator extends Operator {
 
   @Override

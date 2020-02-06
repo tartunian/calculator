@@ -1,3 +1,7 @@
+package Symbols.Operators;
+
+import Symbols.Operand;
+
 public class InitOperator extends Operator {
 
   @Override
