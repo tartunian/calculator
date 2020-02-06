@@ -1,21 +1,21 @@
-import Symbols.Operators.CloseParenthesisOperator;
-import Symbols.Operators.InitOperator;
-import Symbols.Operators.OpenParenthesisOperator;
-import Symbols.Operators.Operator;
+import Symbols.CloseParenthesisOperator;
+import Symbols.InitOperator;
+import Symbols.OpenParenthesisOperator;
+import Symbols.Operator;
 import Symbols.Operand;
 
 import java.util.*;
 
 public class Evaluator {
-  private Stack<Operand> operandStack;
-  private Stack<Operator> operatorStack;
+  private Stack <Operand> operandStack;
+  private Stack <Operator> operatorStack;
 
   private StringTokenizer tokenizer;
   private static final String DELIMITERS = "+-*^/() ";
 
   public Evaluator() {
-    operandStack = new Stack<>();
-    operatorStack = new Stack<>();
+    operandStack = new Stack<Operand>();
+    operatorStack = new Stack<Operator>();
     operatorStack.push( new InitOperator() );
   }
 
@@ -25,7 +25,7 @@ public class Evaluator {
     } else if ( Operator.check( token ) ) {
       Operator newOperator = Operator.getByToken( token );
       handleOperator( newOperator );
-    } else if ( token.equals( " " ) {
+    } else if ( token == " " ) {
     } else {
       System.out.println( "*****invalid token******" );
       System.exit( 1 );
@@ -34,12 +34,12 @@ public class Evaluator {
 
   private void handleOperator( Operator newOperator ) {
     while ( operatorStack.peek().getClass() != OpenParenthesisOperator.class &&
-            operatorStack.peek().priority() >= newOperator.priority() ) {
+            operatorStack.peek().getPriority() >= newOperator.getPriority() ) {
       Operator prioritizedOperator = operatorStack.pop();
       Operand secondOperand = operandStack.pop();
       operandStack.push( prioritizedOperator.execute( operandStack.pop(), secondOperand ) );
     }
-    if ( newOperator.getClass().equals( CloseParenthesisOperator.class ) ) {
+    if ( newOperator.getClass() == CloseParenthesisOperator.class ) {
       operatorStack.pop();
     } else {
       operatorStack.push( newOperator );
@@ -47,10 +47,10 @@ public class Evaluator {
   }
 
   private int complete() {
-    if ( operatorStack.peek().getClass() != InitOperator.class ) {
-      Operator lastOperator = operatorStack.pop();
+    while ( operatorStack.peek().getClass() != InitOperator.class ) {
+      Operator nextOperator = operatorStack.pop();
       Operand secondOperand = operandStack.pop();
-      operandStack.push( opr.execute( operandStack.pop(), secondOperand ) );
+      operandStack.push( nextOperator.execute( operandStack.pop(), secondOperand ) );
     }
     return operandStack.peek().getValue();
   }

@@ -4,6 +4,10 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 public class EvaluatorUI extends JFrame implements ActionListener {
+
+  private enum State { READY, RESULT_CALCULATED }
+  private State state = State.READY;
+
   private TextField txField = new TextField();
   private Panel buttonPanel = new Panel();
 
@@ -56,21 +60,24 @@ public class EvaluatorUI extends JFrame implements ActionListener {
   }
 
   public void actionPerformed( ActionEvent arg0 ) {
-
-    // Get the button text/token.
     String cmd = arg0.getActionCommand();
-
     switch ( cmd ) {
       case "C": {
-        txField.setText("");
+        txField.setText( "" );
+        state = State.READY;
         break;
       }
       case "CE": {
-        txField.setText( txField.getText().substring( 0, txField.getText().length() - 1 ) );
+        if ( txField.getText().length() > 0 ) {
+          txField.setText(txField.getText().substring(0, txField.getText().length() - 1));
+        }
         break;
       }
       case "=": {
-        txField.setText( Integer.toString( evaluator.eval( txField.getText() ) ) );
+        if ( state == State.READY ) {
+          txField.setText( Integer.toString( evaluator.eval( txField.getText() ) ) );
+          state = State.RESULT_CALCULATED;
+        }
         break;
       }
       default: {
