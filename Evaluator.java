@@ -25,7 +25,7 @@ public class Evaluator {
     } else if ( Operator.check( token ) ) {
       Operator newOperator = Operator.getByToken( token );
       handleOperator( newOperator );
-    } else if ( token == " " ) {
+    } else if ( token.equals(" ") ) {
     } else {
       System.out.println( "*****invalid token******" );
       System.exit( 1 );
@@ -62,4 +62,5 @@ public class Evaluator {
     }
     return complete();
   }
+
 }
