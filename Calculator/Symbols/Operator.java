@@ -1,13 +1,13 @@
-package Symbols;
+package Calculator.Symbols;
 
 import java.util.HashMap;
 
 public abstract class Operator {
 
   private static String operatorTokens = "+-*/^()";
-  // The Symbols.Operator class should contain an instance of a HashMap
+  // The Calculator.Symbols.Operator class should contain an instance of a HashMap
   // This map will use keys as the tokens we're interested in,
-  // and values will be instances of the Symbols.Operators.
+  // and values will be instances of the Calculator.Symbols.Operators.
 
   // Example:
   // Where does this declaration go? What should its access level be?

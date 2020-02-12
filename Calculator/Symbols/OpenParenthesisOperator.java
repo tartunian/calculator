@@ -1,10 +1,10 @@
-package Symbols;
+package Calculator.Symbols;
 
-public class CloseParenthesisOperator extends Operator {
+public class OpenParenthesisOperator extends Operator {
 
   @Override
   public int getPriority() {
-    return 0;
+    return 4;
   }
 
   @Override
@@ -12,3 +12,4 @@ public class CloseParenthesisOperator extends Operator {
     return null;
   }
 }
+

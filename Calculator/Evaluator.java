@@ -1,8 +1,10 @@
-import Symbols.CloseParenthesisOperator;
-import Symbols.InitOperator;
-import Symbols.OpenParenthesisOperator;
-import Symbols.Operator;
-import Symbols.Operand;
+package Calculator;
+
+import Calculator.Symbols.CloseParenthesisOperator;
+import Calculator.Symbols.InitOperator;
+import Calculator.Symbols.OpenParenthesisOperator;
+import Calculator.Symbols.Operator;
+import Calculator.Symbols.Operand;
 
 import java.util.*;
 
@@ -13,10 +15,20 @@ public class Evaluator {
   private StringTokenizer tokenizer;
   private static final String DELIMITERS = "+-*^/() ";
 
-  public Evaluator() {
+  private static Evaluator instance;
+
+  private Evaluator() {
     operandStack = new Stack<Operand>();
     operatorStack = new Stack<Operator>();
     operatorStack.push( new InitOperator() );
+  }
+
+  public static Evaluator getInstance() {
+    if( instance == null ) {
+      return instance = new Evaluator();
+    } else {
+      return instance;
+    }
   }
 
   private void handleToken( String token ) {
