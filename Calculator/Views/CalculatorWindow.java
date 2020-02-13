@@ -1,27 +1,17 @@
 import Calculator.UI.*;
+import Calculator.ViewModels.CalculatorViewModel;
 
 import javax.swing.*;
 import java.awt.*;
+import java.beans.PropertyChangeEvent;
+import java.beans.PropertyChangeListener;
 
-public class EvaluatorUI extends JFrame {
+public class EvaluatorUI extends JFrame implements PropertyChangeListener {
 
-  private static final String[] bText = {
-    "7", "8", "9", "+",
-    "4", "5", "6", "-",
-    "1", "2", "3", "*",
-    "0", "^", "=", "/",
-    "(", ")", "C", "CE"
-  };
-
-  private enum State { READY, RESULT_CALCULATED }
-  private State state = State.READY;
+  private CalculatorViewModel viewModel = new CalculatorViewModel();
 
   private TextField textField = new TextField();
   private Panel buttonPanel = new Panel();
-
-  private Button[] buttons = new CalculatorButton[ 20 ];
-
-  private EventManager eventManager = new EventManager( textField );
 
   public static void main( String argv[] ) {
     EvaluatorUI calc = new EvaluatorUI();
@@ -35,8 +25,9 @@ public class EvaluatorUI extends JFrame {
     textField.setEditable( false );
 
     add( buttonPanel, BorderLayout.CENTER );
-
     buttonPanel.setLayout( new GridLayout( 5, 4 ) );
+
+    Button[] button = new CalculatorButton[ 20 ];
 
     buttons[0] = new SymbolButton( "7" );
     buttons[1] = new SymbolButton( "8" );
@@ -66,7 +57,7 @@ public class EvaluatorUI extends JFrame {
 
     //set up buttons to listen for mouse input
     for ( int i = 0; i < 20; i++ ) {
-      buttons[ i ].addActionListener( eventManager );
+      buttons[ i ].addActionListener( viewModel );
     }
 
     setTitle( "Calculator" );
@@ -75,6 +66,11 @@ public class EvaluatorUI extends JFrame {
     setDefaultCloseOperation( WindowConstants.EXIT_ON_CLOSE );
     setVisible( true );
 
+  }
+
+  @Override
+  public void propertyChange(PropertyChangeEvent evt) {
+    System.out.println( "PropertyChanged: " + evt.getPropertyName() );
   }
 
 }
