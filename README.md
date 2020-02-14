@@ -1,2 +1,2 @@
 # CSC413 Lab 1
-## Infix Expression Calculator.Evaluator and UI
+## Infix Expression Calculator.Model.Evaluator and UI

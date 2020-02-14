@@ -1,6 +1,6 @@
-package Calculator.Symbols;
+package Calculator.Model;
 
-public class SubtractionOperator extends Operator {
+public class AdditionOperator extends Operator {
 
   @Override
   public int getPriority() {
@@ -9,9 +9,10 @@ public class SubtractionOperator extends Operator {
 
   @Override
   public Operand execute( Operand firstOperand, Operand secondOperand ) {
-    int result =  firstOperand.getValue() - secondOperand.getValue();
+    int result =  firstOperand.getValue() + secondOperand.getValue();
     return new Operand( result );
   }
 
 }
+
 

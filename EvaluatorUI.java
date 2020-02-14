@@ -5,14 +5,6 @@ import java.awt.*;
 
 public class EvaluatorUI extends JFrame {
 
-  private static final String[] bText = {
-    "7", "8", "9", "+",
-    "4", "5", "6", "-",
-    "1", "2", "3", "*",
-    "0", "^", "=", "/",
-    "(", ")", "C", "CE"
-  };
-
   private enum State { READY, RESULT_CALCULATED }
   private State state = State.READY;
 

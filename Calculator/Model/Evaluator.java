@@ -1,10 +1,4 @@
-package Calculator;
-
-import Calculator.Symbols.CloseParenthesisOperator;
-import Calculator.Symbols.InitOperator;
-import Calculator.Symbols.OpenParenthesisOperator;
-import Calculator.Symbols.Operator;
-import Calculator.Symbols.Operand;
+package Calculator.Model;
 
 import java.util.*;
 

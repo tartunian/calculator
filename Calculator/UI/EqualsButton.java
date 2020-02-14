@@ -1,6 +1,6 @@
 package Calculator.UI;
 
-import Calculator.Evaluator;
+import Calculator.Model.Evaluator;
 
 import java.awt.*;
 
