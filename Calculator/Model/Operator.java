@@ -27,7 +27,7 @@ public abstract class Operator {
   public static Operator getByToken( String token ) {
     return operators.get( token );
   }
-  public static boolean check( String token ) {
+  public static boolean isOperator(String token ) {
     return operatorTokens.contains( token );
   }
 

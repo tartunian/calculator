@@ -26,9 +26,9 @@ public class Evaluator {
   }
 
   private void handleToken( String token ) {
-    if ( Operand.check( token ) ) {
+    if ( Operand.isOperand( token ) ) {
         operandStack.push( new Operand( token ) );
-    } else if ( Operator.check( token ) ) {
+    } else if ( Operator.isOperator( token ) ) {
       Operator newOperator = Operator.getByToken( token );
       handleOperator( newOperator );
     } else if ( token.equals(" ") ) {
@@ -40,6 +40,7 @@ public class Evaluator {
 
   private void handleOperator( Operator newOperator ) {
     while ( operatorStack.peek().getClass() != OpenParenthesisOperator.class &&
+            operatorStack.peek().getClass() != InitOperator.class &&
             operatorStack.peek().getPriority() >= newOperator.getPriority() ) {
       Operator prioritizedOperator = operatorStack.pop();
       Operand secondOperand = operandStack.pop();

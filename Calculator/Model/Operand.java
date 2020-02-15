@@ -4,7 +4,7 @@ public class Operand {
 
   private int value;
 
-  public static boolean check( String token ) {
+  public static boolean isOperand(String token ) {
     try { int i = Integer.parseInt(token); } catch (Exception e) { return false; }
     return true;
   }
