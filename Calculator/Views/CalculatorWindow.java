@@ -1,5 +1,7 @@
 package Calculator.Views;
 
+import Calculator.UI.CommandButton;
+import Calculator.UI.SymbolButton;
 import Calculator.ViewModels.CalculatorViewModel;
 
 import javax.swing.*;
@@ -14,6 +16,14 @@ public class CalculatorWindow extends JFrame implements PropertyChangeListener {
   private TextField textField = new TextField();
   private Panel buttonPanel = new Panel();
 
+  private String[] buttonText = {
+    "7", "8", "9", "+",
+    "4", "5", "6", "-",
+    "1", "2", "3", "*",
+    "(", "0", ")", "/",
+    "^", "C", "CE", "="
+  };
+
   public CalculatorWindow() {
 
     viewModel.addPropertyChangeListener( "expression", this );
@@ -26,31 +36,19 @@ public class CalculatorWindow extends JFrame implements PropertyChangeListener {
     add( buttonPanel, BorderLayout.CENTER );
     buttonPanel.setLayout( new GridLayout( 5, 4 ) );
 
-    Button[] buttons = new CalculatorButton[ 20 ];
+    Button[] buttons = new Button[ buttonText.length ];
 
-    buttons[0] = new CalculatorButton( "7", viewModel.appendSevenCommand );
-    buttons[1] = new CalculatorButton( "8", viewModel.appendEightCommand );
-    buttons[2] = new CalculatorButton( "9", viewModel.appendNineCommand );
-    buttons[3] = new CalculatorButton( "+", viewModel.appendPlusCommand );
-    buttons[4] = new CalculatorButton( "4", viewModel.appendFourCommand );
-    buttons[5] = new CalculatorButton( "5", viewModel.appendFiveCommand );
-    buttons[6] = new CalculatorButton( "6", viewModel.appendSixCommand );
-    buttons[7] = new CalculatorButton( "-" , viewModel.appendMinusCommand );
-    buttons[8] = new CalculatorButton( "1", viewModel.appendOneCommand );
-    buttons[9] = new CalculatorButton( "2", viewModel.appendTwoCommand );
-    buttons[10] = new CalculatorButton( "3", viewModel.appendThreeCommand);
-    buttons[11] = new CalculatorButton( "*", viewModel.appendMultiplyCommand );
-    buttons[12] = new CalculatorButton( "0", viewModel.appendZeroCommand );
-    buttons[13] = new CalculatorButton( "^", viewModel.appendExponentCommand );
-    buttons[14] = new CalculatorButton( "=", viewModel.equalsCommand );
-    buttons[15] = new CalculatorButton( "/", viewModel.appendDivideCommand );
-    buttons[16] = new CalculatorButton( "(", viewModel.appendOpenParenthesisCommand );
-    buttons[17] = new CalculatorButton( ")", viewModel.appendCloseParenthesisCommand );
-    buttons[18] = new CalculatorButton( "C", viewModel.clearCommand );
-    buttons[19] = new CalculatorButton( "CE", viewModel.clearEntryCommand );
+    for( int i=0; i<17; i++ ) {
+      if( SymbolButton.isSymbol( buttonText[ i ] ) ) {
+        buttons[ i ] = new SymbolButton( buttonText[ i ], viewModel.appendExpressionCommand );
+      }
+    }
 
-    //add buttons to button panel
-    for ( int i = 0; i < 20; i++ ) {
+    buttons[17] = new CommandButton( "C", viewModel.clearCommand );
+    buttons[18] = new CommandButton( "CE", viewModel.clearEntryCommand );
+    buttons[19] = new CommandButton( "=", viewModel.equalsCommand );
+
+    for ( int i=0; i<20; i++ ) {
       buttonPanel.add( buttons[ i ] );
     }
 
@@ -63,7 +61,7 @@ public class CalculatorWindow extends JFrame implements PropertyChangeListener {
   }
 
   @Override
-  public void propertyChange(PropertyChangeEvent evt) {
+  public void propertyChange( PropertyChangeEvent evt ) {
     if( evt.getPropertyName() == "expression" ) {
       textField.setText( viewModel.getExpression() );
     }

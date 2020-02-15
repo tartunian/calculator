@@ -1,6 +1,6 @@
-package Calculator.Symbols;
+package Calculator.Model;
 
-public class MultiplicationOperator extends Operator {
+public class DivisionOperator extends Operator {
 
   @Override
   public int getPriority() {
@@ -9,7 +9,7 @@ public class MultiplicationOperator extends Operator {
 
   @Override
   public Operand execute( Operand firstOperand, Operand secondOperand ) {
-    int result =  firstOperand.getValue() * secondOperand.getValue();
+    int result =  firstOperand.getValue() / secondOperand.getValue();
     return new Operand( result );
   }
 

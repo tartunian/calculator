@@ -1,4 +1,4 @@
-package Calculator.Symbols;
+package Calculator.Model;
 
 public class InitOperator extends Operator {
 
