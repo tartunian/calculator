@@ -61,7 +61,7 @@ public class Evaluator {
     return operandStack.peek().getValue();
   }
 
-  public int eval( String expression ) {
+  public int evaluate( String expression ) {
     this.tokenizer = new StringTokenizer( expression, DELIMITERS, true );
     while ( this.tokenizer.hasMoreTokens() ) {
       handleToken( this.tokenizer.nextToken() );

@@ -2,7 +2,7 @@ package Calculator.Model;
 
 public class Operand {
 
-  private int _value;
+  private int value;
 
   public static boolean check( String token ) {
     try { int i = Integer.parseInt(token); } catch (Exception e) { return false; }
@@ -10,15 +10,15 @@ public class Operand {
   }
 
   public Operand( String token ) {
-    try { _value = Integer.parseInt( token ); } catch (Exception e) {}
+    try { value = Integer.parseInt( token ); } catch (Exception e) {}
   }
 
   public Operand( int value ) {
-    _value = value;
+    this.value = value;
   }
 
   public int getValue() {
-    return _value;
+    return this.value;
   }
 
   public String toString() {

@@ -12,7 +12,7 @@ public class EqualsButton extends CalculatorButton {
 
   @Override
   public void performAction( TextField textField ) {
-    textField.setText( Integer.toString( Evaluator.getInstance().eval( textField.getText() ) ) );
+    textField.setText( Integer.toString( Evaluator.getInstance().evaluate( textField.getText() ) ) );
   }
 
 }
