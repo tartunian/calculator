@@ -5,9 +5,6 @@ import java.awt.*;
 
 public class EvaluatorUI extends JFrame {
 
-  private enum State { READY, RESULT_CALCULATED }
-  private State state = State.READY;
-
   private TextField textField = new TextField();
   private Panel buttonPanel = new Panel();
 
