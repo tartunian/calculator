@@ -1,6 +1,6 @@
-package Calculator.Model;
+package Model;
 
-public class CloseParenthesisOperator extends Operator {
+public class InitOperator extends Operator {
 
   @Override
   public int getPriority() {
@@ -9,6 +9,7 @@ public class CloseParenthesisOperator extends Operator {
 
   @Override
   public Operand execute( Operand firstOperand, Operand secondOperand ) {
-    return null;
+      return null;
   }
+
 }

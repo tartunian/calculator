@@ -1,4 +1,4 @@
-import Calculator.UI.*;
+package UI;
 
 import javax.swing.*;
 import java.awt.*;
@@ -11,10 +11,6 @@ public class EvaluatorUI extends JFrame {
   private Button[] buttons = new CalculatorButton[ 20 ];
 
   private EventManager eventManager = new EventManager( textField );
-
-  public static void main( String argv[] ) {
-    EvaluatorUI calc = new EvaluatorUI();
-  }
 
   public EvaluatorUI() {
 
@@ -58,7 +54,7 @@ public class EvaluatorUI extends JFrame {
       buttons[ i ].addActionListener( eventManager );
     }
 
-    setTitle( "Calculator" );
+    setTitle("UI");
     setSize( 400, 400 );
     setLocationByPlatform( true  );
     setDefaultCloseOperation( WindowConstants.EXIT_ON_CLOSE );

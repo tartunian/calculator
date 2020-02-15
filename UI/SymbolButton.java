@@ -1,4 +1,4 @@
-package Calculator.UI;
+package UI;
 
 import java.awt.*;
 import java.util.regex.Pattern;

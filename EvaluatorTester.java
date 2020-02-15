@@ -1,7 +1,7 @@
-import Calculator.Model.Evaluator;
+import Model.Evaluator;
 
 /**
- * Class to help test your Calculator.Model.Evaluator:
+ * Class to help test your Model.Evaluator:
  * javac EvaluatorTester
  * java EvaluatorTester "1+2" "3*5"
  */

@@ -1,15 +1,15 @@
-package Calculator.Model;
+package Model;
 
-public class InitOperator extends Operator {
+public class OpenParenthesisOperator extends Operator {
 
   @Override
   public int getPriority() {
-    return 0;
+    return 4;
   }
 
   @Override
   public Operand execute( Operand firstOperand, Operand secondOperand ) {
-      return null;
+    return null;
   }
-
 }
+

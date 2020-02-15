@@ -1,4 +1,4 @@
-package Calculator.Model;
+package Model;
 
 import java.util.HashMap;
 
