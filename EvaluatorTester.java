@@ -1,5 +1,3 @@
-import Model.Evaluator;
-
 /**
  * Class to help test your Model.Evaluator:
  * javac EvaluatorTester

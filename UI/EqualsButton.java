@@ -1,18 +1,21 @@
 package UI;
 
-import Model.Evaluator;
+import Model.IEvaluator;
 
 import java.awt.*;
 
 public class EqualsButton extends CalculatorButton {
 
-  public EqualsButton() {
+  private IEvaluator evaluator;
+
+  public EqualsButton( IEvaluator evaluator ) {
     super( "=" );
+    this.evaluator = evaluator;
   }
 
   @Override
   public void performAction( TextField textField ) {
-    textField.setText( Integer.toString( Evaluator.getInstance().evaluate( textField.getText() ) ) );
+    textField.setText( Integer.toString( this.evaluator.evaluate( textField.getText() ) ) );
   }
 
 }

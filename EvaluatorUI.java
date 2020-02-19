@@ -1,4 +1,4 @@
-package UI;
+import UI.*;
 
 import javax.swing.*;
 import java.awt.*;
@@ -37,7 +37,7 @@ public class EvaluatorUI extends JFrame {
     buttons[11] = new SymbolButton( "*" );
     buttons[12] = new SymbolButton( "0" );
     buttons[13] = new SymbolButton( "^" );
-    buttons[14] = new EqualsButton();
+    buttons[14] = new EqualsButton( Evaluator.getInstance() );
     buttons[15] = new SymbolButton( "/" );
     buttons[16] = new SymbolButton( "(" );
     buttons[17] = new SymbolButton( ")" );
@@ -60,6 +60,10 @@ public class EvaluatorUI extends JFrame {
     setDefaultCloseOperation( WindowConstants.EXIT_ON_CLOSE );
     setVisible( true );
 
+  }
+
+  public static void main(String[] args) {
+    new EvaluatorUI();
   }
 
 }

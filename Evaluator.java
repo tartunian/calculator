@@ -1,8 +1,7 @@
-package Model;
-
+import Model.*;
 import java.util.*;
 
-public class Evaluator {
+public class Evaluator implements IEvaluator {
   private Stack <Operand> operandStack;
   private Stack <Operator> operatorStack;
 
