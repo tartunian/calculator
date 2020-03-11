@@ -8,13 +8,15 @@ import java.util.function.Consumer;
 
 public class CalculatorViewModel {
 
+  private Boolean ready = true;
+
   PropertyChangeSupport support = new PropertyChangeSupport(this);
 
   private String expression = "";
 
-  public final Consumer<String> appendExpressionCommand = s -> appendExpression( s );
-  public final Runnable equalsCommand = () -> setExpression( Integer.toString( Evaluator.getInstance().eval( expression ) ) );
-  public final Runnable clearCommand = () -> setExpression( "" );
+  public final Consumer<String> appendExpressionCommand = s -> { if( !ready ){ clear(); }; appendExpression( s ); ready=true; };
+  public final Runnable equalsCommand = () -> { setExpression( Integer.toString( Evaluator.getInstance().eval( expression ) ) ); ready=false; };
+  public final Runnable clearCommand = () -> clear();
   public final Runnable clearEntryCommand = () -> clearEntry();
 
   public String getExpression() {
@@ -36,6 +38,11 @@ public class CalculatorViewModel {
     if( length > 0 ) {
       setExpression( expression.substring( 0, length - 1) );
     }
+  }
+
+  private void clear() {
+    Evaluator.getInstance().clear();;
+    setExpression("");
   }
 
   public void addPropertyChangeListener( PropertyChangeListener listener ) {

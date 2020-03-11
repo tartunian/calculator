@@ -25,6 +25,12 @@ public class Evaluator {
     }
   }
 
+  public void clear() {
+    operandStack = new Stack<Operand>();
+    operatorStack = new Stack<Operator>();
+    operatorStack.push( new InitOperator() );
+  }
+
   private void handleToken( String token ) {
     if ( Operand.check( token ) ) {
         operandStack.push( new Operand( token ) );
