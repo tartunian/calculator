@@ -1,8 +1,8 @@
-package Calculator.Views;
+package Views;
 
-import Calculator.UI.CommandButton;
-import Calculator.UI.SymbolButton;
-import Calculator.ViewModels.CalculatorViewModel;
+import UI.CommandButton;
+import UI.SymbolButton;
+import ViewModels.CalculatorViewModel;
 
 import javax.swing.*;
 import java.awt.*;

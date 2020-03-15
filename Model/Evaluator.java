@@ -1,4 +1,4 @@
-package Calculator.Model;
+package Model;
 
 import java.util.*;
 
@@ -12,9 +12,7 @@ public class Evaluator {
   private static Evaluator instance;
 
   private Evaluator() {
-    operandStack = new Stack<Operand>();
-    operatorStack = new Stack<Operator>();
-    operatorStack.push( new InitOperator() );
+    reset();
   }
 
   public static Evaluator getInstance() {
@@ -25,7 +23,7 @@ public class Evaluator {
     }
   }
 
-  public void clear() {
+  public void reset() {
     operandStack = new Stack<Operand>();
     operatorStack = new Stack<Operator>();
     operatorStack.push( new InitOperator() );
@@ -62,9 +60,13 @@ public class Evaluator {
     while ( operatorStack.peek().getClass() != InitOperator.class ) {
       Operator nextOperator = operatorStack.pop();
       Operand secondOperand = operandStack.pop();
-      operandStack.push( nextOperator.execute( operandStack.pop(), secondOperand ) );
+      Operand firstOperand = operandStack.pop();
+      System.out.println( String.format( "First: %s Second: %s", firstOperand.getValue(), secondOperand.getValue() ) );
+      operandStack.push( nextOperator.execute( firstOperand, secondOperand ) );
     }
-    return operandStack.peek().getValue();
+    int result = operandStack.pop().getValue();
+    System.out.println( operandStack + " " + operatorStack );
+    return result;
   }
 
   public int eval( String expression ) {

@@ -1,10 +1,10 @@
-package Calculator.Model;
+package Model;
 
-public class OpenParenthesisOperator extends Operator {
+public class CloseParenthesisOperator extends Operator {
 
   @Override
   public int getPriority() {
-    return 4;
+    return 0;
   }
 
   @Override
@@ -12,4 +12,3 @@ public class OpenParenthesisOperator extends Operator {
     return null;
   }
 }
-

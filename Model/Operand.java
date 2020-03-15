@@ -1,4 +1,4 @@
-package Calculator.Model;
+package Model;
 
 public class Operand {
 

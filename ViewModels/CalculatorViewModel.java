@@ -1,6 +1,6 @@
-package Calculator.ViewModels;
+package ViewModels;
 
-import Calculator.Model.Evaluator;
+import Model.Evaluator;
 
 import java.beans.PropertyChangeListener;
 import java.beans.PropertyChangeSupport;
@@ -14,7 +14,7 @@ public class CalculatorViewModel {
 
   private String expression = "";
 
-  public final Consumer<String> appendExpressionCommand = s -> { if( !ready ){ clear(); }; appendExpression( s ); ready=true; };
+  public final Consumer<String> appendExpressionCommand = s -> { appendExpression( s ); ready=true; };
   public final Runnable equalsCommand = () -> { setExpression( Integer.toString( Evaluator.getInstance().eval( expression ) ) ); ready=false; };
   public final Runnable clearCommand = () -> clear();
   public final Runnable clearEntryCommand = () -> clearEntry();
@@ -26,7 +26,7 @@ public class CalculatorViewModel {
   private void setExpression( String expression ) {
     String oldValue = this.expression;
     this.expression = expression;
-    support.firePropertyChange("expression", oldValue, this.expression );
+    support.firePropertyChange( "expression", oldValue, this.expression );
   }
 
   private void appendExpression( String chars ) {
@@ -41,7 +41,7 @@ public class CalculatorViewModel {
   }
 
   private void clear() {
-    Evaluator.getInstance().clear();;
+    Evaluator.getInstance().reset();;
     setExpression("");
   }
 
