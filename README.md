@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 Project 1
 Java Infix Expression Evaluator
 
@@ -82,4 +81,3 @@ FIGURE 4 - MVVM IMPLEMENTATION
 =======
 # CSC413 Lab 1
 ## Infix Expression Evaluator and UI
->>>>>>> mvvm
