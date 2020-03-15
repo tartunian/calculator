@@ -1,22 +1,28 @@
 package UI;
 
 import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.util.function.Consumer;
 import java.util.regex.Pattern;
 
-public class SymbolButton extends CalculatorButton {
+public class SymbolButton extends Button implements ActionListener {
 
-  public SymbolButton( String label ) {
-    super( label );
-    boolean isOperator = Pattern.matches( "[++--*/^()]", label );
-    boolean isDigit = Pattern.matches( "\\b\\d\\b", label);
-    if( !isOperator && !isDigit ) {
-      throw new IllegalArgumentException( "Argument \'label\' must be a digit or operator" );
-    }
+  public static boolean isSymbol( String token ) {
+    return Pattern.matches( "([0-9]|[+\\-*/^()])", token );
+  }
+
+  private Consumer<String> command;
+
+  public SymbolButton( String label, Consumer<String> command ) {
+    setLabel( label );
+    this.command = command;
+    addActionListener( this );
   }
 
   @Override
-  public void performAction( TextField textField ) {
-    textField.setText( textField.getText() + this.getLabel() );
+  public void actionPerformed( ActionEvent e ) {
+    command.accept( this.getLabel() );
   }
 
 }

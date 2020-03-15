@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 Project 1
 Java Infix Expression Evaluator
 
@@ -78,3 +79,7 @@ Overall this was a great project and learning experience and I look forward to f
 Appendix
  
 FIGURE 4 - MVVM IMPLEMENTATION
+=======
+# CSC413 Lab 1
+## Infix Expression Evaluator and UI
+>>>>>>> mvvm
